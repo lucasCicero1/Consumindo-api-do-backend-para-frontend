@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+</head>
+<body>
+    
+
+    <main>
+
+        <table>
+
+        </table>
+
+    </main>
+
+    <script>
+
+        async function getContent(){
+
+            try {
+                const response = await fetch('http://localhost:4567/')
+                const data = await response.json()
+                console.log(data)
+                showData(data)
+
+            } catch (error) {
+                console.error(error)
+            }
+
+        }
+
+
+        getContent()
+
+
+        function showData(dados){
+
+            let output = '<tr> <th>Name</th> <th>Email</th> <th>CEP</th> </tr>'
+
+            for( let dado of dados ){
+                output += `<tr> <td>${dado.name}</td><td>${dado.email}</td> <td>${dado.address.zipcode}</td> </tr>`
+            }
+
+            document.querySelector('table').innerHTML = output
+
+        }
+
+
+    </script>
+
+</body>
+</html>
